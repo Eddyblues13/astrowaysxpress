@@ -6,20 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Package Tracking - {{ $package->tracking_number }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
+        /* Custom Styles */
         .header {
             background-color: #2a2a80;
             color: #fff;
@@ -56,92 +48,107 @@
             position: relative;
         }
 
-        .progress-bar {
-            flex: 1;
-            height: 8px;
-            background: #ddd;
-            position: relative;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-bar::before {
-            content: "";
-            position: absolute;
-            height: 8px;
-
-            width: {
-                    {
-                    $package->parcel_status =='Delivered' ? '100%': ($package->parcel_status =='Out for delivery' ? '75%' : ($package->parcel_status =='In transit' ? '50%' : '25%'))
-                }
-            }
-
-            ;
-            background: #2a2a80;
-            border-radius: 4px;
-            animation: fillProgress 2s ease-in-out;
-        }
-
-        @keyframes fillProgress {
-            from {
-                width: 0;
-            }
-
-            to {
-                width: {
-                        {
-                        $package->parcel_status =='Delivered' ? '100%': ($package->parcel_status =='Out for delivery' ? '75%' : ($package->parcel_status =='In transit' ? '50%' : '25%'))
-                    }
-                }
-
-                ;
-            }
-        }
-
         .progress-step {
-            width: 20px;
-            height: 20px;
-            background: #ddd;
+            width: 40px;
+            height: 40px;
+            background: #e9ecef;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 16px;
             font-weight: bold;
-            color: #fff;
+            color: #6c757d;
             position: relative;
-            transition: background 0.5s ease;
+            transition: all 0.5s ease;
         }
 
-        .active-step {
-            background: #2a2a80 !important;
+        .progress-step.active-step {
+            background: #2a2a80;
+            color: #fff;
+            transform: scale(1.1);
         }
 
         .progress-label {
             text-align: center;
             font-size: 14px;
-            margin-top: 5px;
-            color: #555;
+            margin-top: 10px;
+            color: #6c757d;
         }
 
-        .package-info {
-            margin-top: 20px;
+        .progress-label.active-label {
+            color: #2a2a80;
+            font-weight: bold;
+        }
+
+        .progress {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            background-color: #2a2a80;
+            transition: width 2s ease-in-out;
+        }
+
+        /* Current Location Styling */
+        .current-location {
+            text-align: center;
             padding: 15px;
-            background: #f4f4f4;
+            background: #eef0f8;
             border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2a2a80;
+            margin-top: 20px;
         }
 
-        .package-info p {
-            font-size: 16px;
-            margin: 8px 0;
+        /* Receipt Styling */
+        .receipt {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        .btn-track {
+        .receipt h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2a2a80;
+            text-align: center;
+        }
+
+        .receipt .receipt-info {
+            margin-bottom: 20px;
+        }
+
+        .receipt .receipt-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .receipt .barcode {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .receipt .barcode svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .btn-download {
             display: block;
             width: 100%;
             padding: 12px;
             text-align: center;
-            background: #ff6b35;
+            background: #2a2a80;
             color: #fff;
             border: none;
             font-size: 16px;
@@ -151,57 +158,8 @@
             transition: background 0.3s ease;
         }
 
-        .btn-track:hover {
-            background: #e65a2b;
-        }
-
-        .receipt {
-            margin-top: 30px;
-            padding: 20px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            animation: slideIn 1s ease-in-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .receipt h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #2a2a80;
-        }
-
-        .barcode {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .progress-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .progress-bar {
-                width: 100%;
-                margin-top: 15px;
-            }
-
-            .progress-label {
-                text-align: left;
-            }
+        .btn-download:hover {
+            background: #1a1a60;
         }
     </style>
 </head>
@@ -218,40 +176,80 @@
                 ucfirst($package->parcel_status) }}</span>
         </div>
 
+        <!-- Current Location Section -->
+        <div class="current-location">
+            Current Location: <strong>{{ $package->current_location }}</strong>
+        </div>
+
+        <!-- Progress Tracking Section -->
         <div class="progress-container">
             <div class="progress-step {{ $package->parcel_status != 'Ordered' ? 'active-step' : '' }}">1</div>
-            <div class="progress-bar"></div>
             <div
                 class="progress-step {{ $package->parcel_status != 'Ordered' && $package->parcel_status != 'In transit' ? 'active-step' : '' }}">
                 2</div>
-            <div class="progress-bar"></div>
             <div
-                class="progress-step {{ $package->parcel_status == 'Out for delivery' || $package->parcel_status == 'Delivered' ? 'active-step' : '' }}">
+                class="progress-step {{ $package->parcel_status == 'Out for Delivery' || $package->parcel_status == 'Delivered' ? 'active-step' : '' }}">
                 3</div>
-            <div class="progress-bar"></div>
             <div class="progress-step {{ $package->parcel_status == 'Delivered' ? 'active-step' : '' }}">4</div>
         </div>
 
+        <!-- Bootstrap Progress Bar -->
+        <div class="progress">
+            <div class="progress-bar" role="progressbar"
+                style="width: {{ $package->parcel_status == 'Delivered' ? '100%' : ($package->parcel_status == 'Out for Delivery' ? '75%' : ($package->parcel_status == 'In transit' ? '50%' : '25%')) }};"
+                aria-valuenow="{{ $package->parcel_status == 'Delivered' ? '100' : ($package->parcel_status == 'Out for Delivery' ? '75' : ($package->parcel_status == 'In transit' ? '50' : '25')) }}"
+                aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
         <div class="progress-container">
-            <div class="progress-label">Ordered</div>
-            <div class="progress-label">In Transit</div>
-            <div class="progress-label">Out for Delivery</div>
-            <div class="progress-label">Delivered</div>
+            <div class="progress-label {{ $package->parcel_status != 'Ordered' ? 'active-label' : '' }}">Ordered</div>
+            <div
+                class="progress-label {{ $package->parcel_status != 'Ordered' && $package->parcel_status != 'In transit' ? 'active-label' : '' }}">
+                In Transit</div>
+            <div
+                class="progress-label {{ $package->parcel_status == 'Out for Delivery' || $package->parcel_status == 'Delivered' ? 'active-label' : '' }}">
+                Out for Delivery</div>
+            <div class="progress-label {{ $package->parcel_status == 'Delivered' ? 'active-label' : '' }}">Delivered
+            </div>
         </div>
 
-        <div class="package-info">
-            <p><strong>Sender:</strong> {{ $package->sender_name }} ({{ $package->sender_phone }})</p>
-            <p><strong>Receiver:</strong> {{ $package->receiver_name }} ({{ $package->receiver_phone }})</p>
-            <p><strong>Current Location:</strong> {{ $package->current_location }}</p>
-            <p><strong>Dispatch Date:</strong> {{ \Carbon\Carbon::parse($package->dispatch_date)->format('F j, Y') }}
-            </p>
-            <p><strong>Expected Delivery:</strong> {{ \Carbon\Carbon::parse($package->delivery_date)->format('F j, Y')
-                }}</p>
+        <!-- Sender and Receiver Details in Bootstrap Cards -->
+        <div class="row mt-4">
+            <!-- Sender Details Card -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <strong>Sender Details</strong>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Name:</strong> {{ $package->sender_name }}</p>
+                        <p><strong>Phone:</strong> {{ $package->sender_phone }}</p>
+                        <p><strong>Email:</strong> {{ $package->sender_email }}</p>
+                        <p><strong>Address:</strong> {{ $package->sender_address }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Receiver Details Card -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <strong>Receiver Details</strong>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Name:</strong> {{ $package->receiver_name }}</p>
+                        <p><strong>Phone:</strong> {{ $package->receiver_phone }}</p>
+                        <p><strong>Email:</strong> {{ $package->receiver_email }}</p>
+                        <p><strong>Address:</strong> {{ $package->receiver_address }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="receipt">
+        <!-- Receipt Section -->
+        <div class="receipt" id="receipt">
             <h3>Receipt</h3>
-            <div class="package-info">
+            <div class="receipt-info">
                 <p><strong>Tracking Number:</strong> {{ $package->tracking_number }}</p>
                 <p><strong>Sender:</strong> {{ $package->sender_name }}</p>
                 <p><strong>Receiver:</strong> {{ $package->receiver_name }}</p>
@@ -265,7 +263,10 @@
             </div>
         </div>
 
-        <a href="/" class="btn-track">Track Another Package</a>
+        <!-- Download Receipt Button -->
+        <button class="btn-download" onclick="downloadReceipt()">Download Receipt</button>
+
+        <a href="/" class="btn btn-primary btn-lg w-100 mt-4">Track Another Package</a>
     </div>
 
     <script>
@@ -277,6 +278,27 @@
             height: 40,
             displayValue: true
         });
+
+        // Download Receipt as PDF
+        function downloadReceipt() {
+            const receipt = document.getElementById("receipt");
+
+            html2canvas(receipt).then((canvas) => {
+                const imgData = canvas.toDataURL("image/png");
+                const pdf = new jspdf.jsPDF();
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+                pdf.save("receipt.pdf");
+            });
+        }
+
+        // Animate progress bar
+        const progressBar = document.querySelector('.progress-bar');
+        progressBar.style.transition = 'width 2s ease-in-out';
+        progressBar.style.width = progressBar.getAttribute('aria-valuenow') + '%';
     </script>
 </body>
 

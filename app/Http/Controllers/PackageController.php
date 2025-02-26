@@ -47,7 +47,8 @@ class PackageController extends Controller
         //$tracking_number = 'TRK' . strtoupper(uniqid());
 
 
-        $tracking_number = 'TR' . strtoupper(Str::random(4));
+        $tracking_number = 'XP' . strtoupper(Str::random(2)) . rand(10, 99);
+
 
         $packageData = $request->all();
         $packageData['tracking_number'] = $tracking_number;
@@ -102,6 +103,7 @@ class PackageController extends Controller
         $package = Package::findOrFail($id);
         $package->delete();
 
-        return response()->json(['status' => 'success', 'message' => 'Package deleted successfully']);
+        // Redirect back with a success message stored in the session
+        return redirect()->back()->with('success', 'Package deleted successfully');
     }
 }

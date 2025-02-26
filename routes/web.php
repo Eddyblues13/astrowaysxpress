@@ -35,4 +35,4 @@ Route::post('/packages/store', [PackageController::class, 'store'])->name('admin
 Route::get('/package/{id}', [PackageController::class, 'view'])->name('admin.package.view');
 Route::get('/packages/{id}/edit', [PackageController::class, 'edit'])->name('admin.packages.edit');
 Route::put('/admin/packages/{package}', [PackageController::class, 'update'])->name('admin.packages.update');
-Route::post('/packages/{id}/delete', [PackageController::class, 'destroy'])->name('admin.packages.delete');
+Route::delete('/admin/packages/{package}', [PackageController::class, 'destroy'])->name('admin.packages.delete');
