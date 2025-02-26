@@ -71,7 +71,7 @@
                 <h3>Main:<br /> 133 NE 2nd Ave, Miami, FL 33132, USA</h3>
                 <!-- Farringdon, <br />EC1M 4EH, United Kingdom<br /> -->
                 T. +1 305 935 0535<br>
-                E. info@globalflowshipment.com<br>
+                E. info@astrowaysxpress.com<br>
 
                 <div class="divider-single"></div>
 
@@ -83,7 +83,7 @@
                 Europa-Allee<br>
                 Frankfurt am Main<br>
                 <!--T. +1 (415) 598-7568<br>-->
-                E. info@globalflowshipment.com<br>
+                E. info@astrowaysxpress.com<br>
 
                 <div class="divider-single"></div>
 
@@ -95,7 +95,7 @@
                 Sentosa<br>
                 Tiger Sky tower<br>
                 <!--T. +1 (415) 598-7568<br>-->
-                E. info@globalflowshipment.com<br>
+                E. info@astrowaysxpress.com<br>
 
                 <div class="divider-single"></div>
 

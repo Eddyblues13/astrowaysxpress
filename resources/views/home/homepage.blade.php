@@ -2,7 +2,7 @@
 <html lang="en-US" class="no-js">
 
 
-<!-- Mirrored from globalflowshipment.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2024 08:19:02 GMT -->
+<!-- Mirrored from astrowaysxpress.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2024 08:19:02 GMT -->
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- TITLE -->
-    <title>Global Flow Shipment - Transportation & Logistics</title>
+    <title>Astro ways Express- Transportation & Logistics</title>
 
     <!--  FAVICON  -->
     <link rel="shortcut icon" href="page/assets/images/icons/favicon.png">
@@ -55,18 +55,7 @@
 
     <!-- MODERNIZR LIBRARY -->
     <script src="page/assets/js/modernizr-custom.js"></script>
-<!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = '3cbca979a8d1f124ead89a64cdbf6691d4f64ea0';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-</script>
-<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+
 
 </head>
 
@@ -98,7 +87,7 @@ window.smartsupp||(function(d) {
         <!-- NAV START -->
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a href="index.html" class="navbar-brand"><img src="page/assets/images/logos/logo.png" alt=""></a>
+                <a href="{{url('/')}}" class="navbar-brand"><img src="{{asset('logo.png')}}" alt=""></a>
 
                 <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
                     <span class="menu-icon-bar"></span>
@@ -109,7 +98,7 @@ window.smartsupp||(function(d) {
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="dropdown">
-                            <a href="index.html" class="nav-item nav-link active">HOME</a>
+                            <a href="{{url('/')}}" class="nav-item nav-link active">HOME</a>
                         </li>
 
                         <li class="dropdown">
@@ -181,20 +170,24 @@ window.smartsupp||(function(d) {
                                         Safety, quality, professionalism. </div>
 
                                     <!-- LAYER NR. 5 -->
-                                    <div class="tp-caption rev-btn  tp-resizeme gototrack" id="slide-2800-layer-4"
-                                        data-x="['right','right','center','center']"
-                                        data-hoffset="['660','550','0','0']"
-                                        data-y="['middle','middle','middle','middle']"
-                                        data-voffset="['160','160','140','83']" data-width="none" data-height="none"
-                                        data-whitespace="nowrap" data-type="button"
-                                        data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
-                                        data-responsive_offset="on"
-                                        data-frames='[{"from":"x:-50px;opacity:0;","speed":2500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"},{"frame":"hover","speed":"150","ease":"Power2.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bg:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 0);bw:2px 2px 2px 2px;"}]'
-                                        data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                                        data-paddingright="[50,50,50,50]" data-paddingbottom="[0,0,0,0]"
-                                        data-paddingleft="[50,50,50,50]"
-                                        style="background-color: #FC4C02 !important; border: solid 1px #FC4C02 !important; z-index: 9; white-space: nowrap; font-size: 15px; line-height: 46px; font-weight: 700; color: rgba(255, 255, 255, 1.00);font-family: 'Open Sans', sans-serif;background-color:rgba(0, 0, 0, 0);border-color:rgba(255, 255, 255, 0.25);border-style:solid;border-width:2px;border-radius:4px 4px 4px 4px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;letter-spacing:5px;cursor:pointer;">
-                                        Track Parcel </div>
+                                    <a href="{{url('/track')}}">
+                                        <div class="tp-caption rev-btn tp-resizeme gototrack" id="slide-2800-layer-4"
+                                            data-x="['right','right','center','center']"
+                                            data-hoffset="['660','550','0','0']"
+                                            data-y="['middle','middle','middle','middle']"
+                                            data-voffset="['160','160','140','83']" data-width="none" data-height="none"
+                                            data-whitespace="nowrap" data-type="button"
+                                            data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
+                                            data-responsive_offset="on"
+                                            data-frames='[{"from":"x:-50px;opacity:0;","speed":2500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"},{"frame":"hover","speed":"150","ease":"Power2.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bg:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 0);bw:2px 2px 2px 2px;"}]'
+                                            data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
+                                            data-paddingright="[50,50,50,50]" data-paddingbottom="[0,0,0,0]"
+                                            data-paddingleft="[50,50,50,50]"
+                                            style="background-color: #FC4C02 !important; border: solid 1px #FC4C02 !important; z-index: 9; white-space: nowrap; font-size: 15px; line-height: 46px; font-weight: 700; color: rgba(255, 255, 255, 1.00);font-family: 'Open Sans', sans-serif;background-color:rgba(0, 0, 0, 0);border-color:rgba(255, 255, 255, 0.25);border-style:solid;border-width:2px;border-radius:4px 4px 4px 4px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;letter-spacing:5px;cursor:pointer;">
+                                            Track Parcel
+                                        </div>
+                                    </a>
+
                                 </li>
                                 <!-- SLIDE  -->
                                 <li data-index="rs-2801" data-transition="slidingoverlayhorizontal"
@@ -604,7 +597,7 @@ window.smartsupp||(function(d) {
                         <div class="testimonial-box">
                             <div class="testimonial-text">
                                 <p><i class="fas fa-quote-left"></i></p>
-                                <p>Been using globalflowshipment.com for some while now. I like their quality of
+                                <p>Been using astrowaysxpress.com for some while now. I like their quality of
                                     services.</p>
                                 <div class="bottom-line"></div>
                             </div>
@@ -620,7 +613,7 @@ window.smartsupp||(function(d) {
                             <div class="testimonial-text">
                                 <p><i class="fas fa-quote-left"></i></p>
                                 <p>Every business is expected to keep to their promise on anything and I think
-                                    personally, Global Flow Shipment has kept their promise.</p>
+                                    personally, Astro ways Expresshas kept their promise.</p>
                                 <div class="bottom-line"></div>
                             </div>
                             <figure class="author-avatar">
@@ -695,7 +688,7 @@ window.smartsupp||(function(d) {
                                 <i class="far fa-envelope"></i>
                             </div>
                             <div class="fc-caption">
-                                <h5><a href="support@globalflowshipment.com">support@globalflowshipment.com</a>
+                                <h5><a href="support@astrowaysxpress.com">support@astrowaysxpress.com</a>
                                 </h5>
                             </div>
                         </div>
@@ -715,7 +708,7 @@ window.smartsupp||(function(d) {
             <hr class="footer-divider">
         </div>
         <div class="container mt-5">
-            <p class="footer-bootom">Copyright © 2024 Global Flow Shipment Transportation & Logistics</p>
+            <p class="footer-bootom">Copyright © 2024 Astro ways ExpressTransportation & Logistics</p>
         </div>
     </footer>
     <!-- FOOTER END -->
@@ -757,6 +750,6 @@ window.smartsupp||(function(d) {
 </body>
 
 
-<!-- Mirrored from globalflowshipment.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2024 08:19:26 GMT -->
+<!-- Mirrored from astrowaysxpress.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2024 08:19:26 GMT -->
 
 </html>

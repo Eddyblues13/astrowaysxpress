@@ -21,7 +21,7 @@
                             <i class="far fa-envelope"></i>
                         </div>
                         <div class="fc-caption">
-                            <h5><a href="support@globalflowshipment.com">support@globalflowshipment.com</a>
+                            <h5><a href="support@astrowaysxpress.com">support@astrowaysxpress.com</a>
                             </h5>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
         <hr class="footer-divider">
     </div>
     <div class="container mt-5">
-        <p class="footer-bootom">Copyright © 2024 Global Flow Shipment Transportation & Logistics</p>
+        <p class="footer-bootom">Copyright © 2024 Astro ways ExpressTransportation & Logistics</p>
     </div>
 </footer>
 <!-- FOOTER END -->
@@ -66,6 +66,6 @@
 </body>
 
 
-<!-- Mirrored from globalflowshipment.com/track/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2024 08:20:35 GMT -->
+<!-- Mirrored from astrowaysxpress.com/track/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2024 08:20:35 GMT -->
 
 </html>
